@@ -1,0 +1,36 @@
+package functional::genericFunctions
+public
+
+with functional::functionalFaultLib;
+
+system generic
+	features
+		isFaulty : feature;
+			
+	annex EMV2{**
+		use types functional::functionalFaultLib;
+		use behavior functional::functionalFaultLib::twoState;
+		
+		error propagations
+			isFaulty : out propagation {anyFunctionalFault};
+		flows
+			f1 : error source isFaulty {anyFunctionalFault};
+		end propagations;
+		
+		component error behavior
+		events
+			fault : error event;
+		transitions
+			t1 : operational -[fault]-> faulty;
+		propagations
+			p1 : faulty -[]-> isFaulty {anyFunctionalFault};
+		end component;
+					
+	**};
+	
+end generic;
+
+system implementation generic.fault
+end generic.fault;
+
+end functional::genericFunctions;

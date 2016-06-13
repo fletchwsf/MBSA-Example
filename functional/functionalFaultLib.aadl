@@ -1,0 +1,20 @@
+package functional::functionalFaultLib
+public
+	
+annex EMV2{**
+	
+	error types
+		anyFunctionalFault : type;
+		faultSet : type set {anyFunctionalFault};		
+	end types;
+	
+	error behavior twoState
+		use types functional::functionalFaultLib;
+		states
+			operational : initial state;
+			faulty : state {faultSet};
+	end behavior;
+	
+**};
+
+end functional::functionalFaultLib;

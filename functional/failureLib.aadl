@@ -1,0 +1,20 @@
+package functional::failureLib
+public
+	
+	
+annex EMV2{**
+	
+	error types
+		failure : type;
+		failureSet : type set {failure};
+	end types;
+	
+	error behavior twoState
+		use types functional::failureLib;
+		states
+			Operative : initial state;
+			Failed: state {failureSet};
+	end behavior;
+	
+**};
+end functional::failureLib;
